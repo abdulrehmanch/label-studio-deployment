@@ -1,0 +1,15 @@
+services:
+  label-studio:
+    image: heartexlabs/label-studio:latest
+    container_name: label-studio
+    ports:
+      - "8080:8080"
+    environment:
+      LABEL_STUDIO_USERNAME: "abddulrehman87@gmail.com"
+      LABEL_STUDIO_PASSWORD: "12345678"
+      LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED: "true"
+      LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT: "/mnt/"
+      LABEL_STUDIO_ALLOWED_HOSTS: "localhost,127.0.0.1,anno.geosoftsolution.com"
+      CSRF_TRUSTED_ORIGINS: "http://localhost:8080,http://127.0.0.1:8080,https://anno.geosoftsolution.com"
+    volumes:
+      - ./label-studio-data:/label-studio/data:Z  # Optional: Mount a volume for persistent data
