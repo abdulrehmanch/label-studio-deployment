@@ -6,13 +6,13 @@ from tqdm import tqdm
 # Connect to Label Studio
 LABEL_STUDIO_URL = "http://localhost:8080"  # Update with your Label Studio URL
 API_KEY = "525f61f0196adaf4a89d9d980e424d636f0b10a3"  # Replace with your API key
-PROJECT_ID = 4  # Replace with your project ID
+PROJECT_ID = 11  # Replace with your project ID
 
 ls = Client(url=LABEL_STUDIO_URL, api_key=API_KEY)
 project = ls.get_project(PROJECT_ID)
 
 # Path to your local image folder
-image_folder = "Augmented_Test_Arabic_Traffic_Signs_speed"
+image_folder = "/mnt/c/Users/abdulrehman/PycharmProjects/traffic_signs_training_yolo_arabic/results_testing/develop_dataset_from_vid_frames/zoomed_cropped_dataset"
 
 tasks = []
 
@@ -49,10 +49,3 @@ with tqdm(total=len(os.listdir(image_folder)), desc="Uploading files", unit="fil
 
 # Close the progress bar
 progress_bar.close()
-
-# Import tasks into Label Studio
-if tasks:
-    project.import_tasks(tasks)
-    print(f"Successfully imported {len(tasks)} tasks into project {PROJECT_ID}.")
-else:
-    print("No tasks were imported. Please check the logs above.")
